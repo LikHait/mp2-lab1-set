@@ -144,8 +144,11 @@ TBitField TBitField::operator&(const TBitField &bf) // операция "и"
 
 TBitField TBitField::operator~(void) // отрицание
 {
-    for (int i = 0; i < MemLen; i++)
-        pMem[i] = ~pMem[i];
+    for (int i = 0; i < BitLen; i++)
+        if (GetBit(i) == 0)
+            SetBit(i);
+        else
+            ClrBit(i);
     return *this;
 }
 

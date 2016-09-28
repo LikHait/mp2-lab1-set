@@ -7,50 +7,39 @@
 
 #include "tset.h"
 
-TSet::TSet(int mp) : MaxPower(mp), BitField(mp)
+TSet::TSet(int mp) : BitField(-1)
 {
 }
 
 // конструктор копирования
-TSet::TSet(const TSet &s) : BitField(s.BitField), MaxPower(s.MaxPower)
+TSet::TSet(const TSet &s) : BitField(-1)
 {
 }
 
 // конструктор преобразования типа
-TSet::TSet(const TBitField &bf) : BitField(bf), MaxPower(bf.GetLength())
+TSet::TSet(const TBitField &bf) : BitField(-1)
 {
 }
 
 TSet::operator TBitField()
 {
-	TBitField tmp((*this).BitField);
-	return tmp;
 }
 
 int TSet::GetMaxPower(void) const // получить макс. к-во эл-тов
 {
-	return MaxPower;
 }
 
 int TSet::IsMember(const int Elem) const // элемент множества?
 {
-	if (Elem > MaxPower || Elem < 1)
-		throw(Elem);
-	return (*this).BitField.GetBit(Elem);
+    return 0;
 }
 
 void TSet::InsElem(const int Elem) // включение элемента множества
 {
-	if (Elem > MaxPower || Elem < 1)
-		throw(Elem);
-	(*this).BitField.SetBit(Elem);
 }
 
 void TSet::DelElem(const int Elem) // исключение элемента множества
 {
-	if (Elem > MaxPower || Elem < 1)
-		throw(Elem);
-	(*this).BitField.ClrBit(Elem);
 }
 
 // теоретико-множественные операции

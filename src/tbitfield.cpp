@@ -81,11 +81,13 @@ int TBitField::GetBit(const int n) const // получить значение б
 
 TBitField& TBitField::operator=(const TBitField &bf) // присваивание
 {
-    if (*this == &bf)
-        throw(this);
+    if (MemLen != bf.MemLen)
+    {
+        MemLen = bf.MemLen;
+        delete[] pMem;
+        pMem = new TELEM[MemLen];
+    }
     BitLen = bf.BitLen;
-    MemLen = bf.MemLen;
-    pMem = new TELEM[MemLen];
     for (int i = 0; i < MemLen; i++)
     {
         pMem[i] = bf.pMem[i];
@@ -158,6 +160,22 @@ TBitField TBitField::operator~(void) // отрицание
 
 istream &operator>>(istream &istr, TBitField &bf) // ввод
 {
+    int i = 0;
+    char ch;
+    while (i < bf.GetLength) {
+        istr >> ch;
+        if (ch == 1) {
+            bf.SetBit(i);
+            i++;
+        }
+        else
+            if (ch == 1) {
+                bf.ClrBit(i);
+                i++;
+            }
+            else
+                break;
+    }
     return istr;
 }
 

@@ -106,4 +106,22 @@ istream &operator>>(istream &istr, TSet &s) // ввод
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
+    //выводятся номера элементов, принадлежащих множеству
+    int MAX = s.MaxPower;
+    int i = 0;
+    ostr << '{' << ' ';
+    do
+    {
+        if (s.IsMember(i)){
+            ostr << i;
+            break;
+        }
+        i++;
+    } while (i < MAX);
+    for (i; i < MAX; i++) {
+        if (s.IsMember(i))
+            ostr << ', ' << i;
+    }
+    ostr << ' ' << '}';
+    return ostr;
 }

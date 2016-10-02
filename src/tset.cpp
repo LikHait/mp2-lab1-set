@@ -102,7 +102,24 @@ TSet TSet::operator~(void) // дополнение
 
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
-
+    //вводятся номера элементов, принадлежащих множеству
+    //формат ввода {i1,i2,... in} (n=MaxPower)
+    //игнорирование всех знаков перед '{' и ','
+    char ch;
+    int tmp;
+    do
+    {
+        istr >> ch;
+    } while (ch != '{');
+    do
+    {
+        istr >> tmp;
+        s.InsElem(tmp);
+        do{
+            istr >> ch;
+        } while (ch != ',' && ch != '}');
+    } while (ch != '}');
+    return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод

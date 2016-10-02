@@ -53,6 +53,7 @@ TSet& TSet::operator=(const TSet &s) // присваивание
 {
     MaxPower = s.MaxPower;
     BitField = s.BitField;
+    return *this;
 }
 
 int TSet::operator==(const TSet &s) const // сравнение

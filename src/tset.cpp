@@ -114,6 +114,7 @@ ostream& operator<<(ostream &ostr, const TSet &s) // вывод
     {
         if (s.IsMember(i)){
             ostr << i;
+            i++;
             break;
         }
         i++;

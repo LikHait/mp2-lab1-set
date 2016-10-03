@@ -162,7 +162,8 @@ istream &operator>>(istream &istr, TBitField &bf) // ввод
 {
     int i = 0;
     char ch;
-    while (i < bf.GetLength) {
+    int n = bf.GetLength();
+    while (i < n) {
         istr >> ch;
         if (ch == 1) {
             bf.SetBit(i);
